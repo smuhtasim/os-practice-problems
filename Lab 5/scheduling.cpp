@@ -1,18 +1,10 @@
 
-// C++ implementation for Priority Scheduling with
-//Different Arrival Time priority scheduling
-/*1. sort the processes according to arrival time
-2. if arrival time is same the acc to priority
-3. apply fcfs
-*/
-
 #include <bits/stdc++.h>
 
 using namespace std;
 
 #define totalprocess 5
 
-// Making a struct to hold the given input
 
 struct process
 {
@@ -21,10 +13,6 @@ int at,bt,pr,pid;
 
 process proc[50];
 
-/*
-Writing comparator function to sort according to priority if
-arrival time is same
-*/
 
 bool comp(process a,process b)
 {
@@ -38,13 +26,13 @@ else
 }
 }
 
-// Using FCFS Algorithm to find Waiting time
+
 void get_wt_time(int wt[])
 {
-// declaring service array that stores cumulative burst time
+
 int service[50];
 
-// Initialising initial elements of the arrays
+
 service[0] = proc[0].at;
 wt[0]=0;
 
@@ -55,7 +43,6 @@ service[i]=proc[i-1].bt+service[i-1];
 
 wt[i]=service[i]-proc[i].at;
 
-// If waiting time is negative, change it into zero
 
     if(wt[i]<0)
     {
@@ -67,7 +54,7 @@ wt[i]=service[i]-proc[i].at;
 
 void get_tat_time(int tat[],int wt[])
 {
-// Filling turnaroundtime array
+
 
 for(int i=0;i<totalprocess;i++)
 {
@@ -78,14 +65,14 @@ for(int i=0;i<totalprocess;i++)
 
 void findgc()
 {
-//Declare waiting time and turnaround time array
+
 int wt[50],tat[50];
 
 double wavg=0,tavg=0;
 
-// Function call to find waiting time array
+
 get_wt_time(wt);
-//Function call to find turnaround time
+
 get_tat_time(tat,wt);
 
 int stime[50],ctime[50];
@@ -93,7 +80,7 @@ int stime[50],ctime[50];
 stime[0] = proc[0].at;
 ctime[0]=stime[0]+tat[0];
 
-// calculating starting and ending time
+
 for(int i=1;i<totalprocess;i++)
     {
         stime[i]=ctime[i-1];
@@ -102,7 +89,7 @@ for(int i=1;i<totalprocess;i++)
 
 cout<<"Process_no\tStart_time\tComplete_time\tResponse_Time\tWaiting_Time"<<endl;
 
-    // display the process details
+
 
 for(int i=0;i<totalprocess;i++)
     {
@@ -114,8 +101,6 @@ for(int i=0;i<totalprocess;i++)
             tat[i]<<"\t\t\t"<<wt[i]<<endl;
     }
 
-        // display the average waiting time
-        //and average turn around time
 
     cout<<"Average waiting time is : ";
     cout<<wavg/(float)totalprocess<<endl;
@@ -144,8 +129,6 @@ if (choice == 1)
     proc[i].pid=i+1;
     }
 
-    //Using inbuilt sort function
-
     sort(proc,proc+totalprocess,comp);
 
     cout<< "Order in which processes gets executed \n";
@@ -158,7 +141,7 @@ if (choice == 1)
     }
 
         cout << "\n";
-    //Calling function findgc for finding Gantt Chart
+
 
     findgc();
 }
