@@ -1,4 +1,3 @@
-
 #include <bits/stdc++.h>
 
 using namespace std;
@@ -31,7 +30,6 @@ void get_wt_time(int wt[])
 {
 
 int service[50];
-
 
 service[0] = proc[0].at;
 wt[0]=0;
@@ -78,7 +76,7 @@ get_tat_time(tat,wt);
 int stime[50],ctime[50];
 
 stime[0] = proc[0].at;
-ctime[0]=stime[0]+tat[0];
+ctime[0] = stime[0]+tat[0];
 
 
 for(int i=1;i<totalprocess;i++)
@@ -87,7 +85,7 @@ for(int i=1;i<totalprocess;i++)
         ctime[i]=stime[i]+tat[i]-wt[i];
     }
 
-cout<<"Process_no\tStart_time\tComplete_time\tResponse_Time\tWaiting_Time"<<endl;
+cout<<"Process_no\tStart_time\tFinish_time\tResponse_Time\tWaiting_Time"<<endl;
 
 
 
@@ -96,9 +94,11 @@ for(int i=0;i<totalprocess;i++)
         wavg += wt[i];
         tavg += tat[i];
 
-        cout<<proc[i].pid<<"\t\t"<<
-            stime[i]<<"\t\t"<<ctime[i]<<"\t\t"<<
-            tat[i]<<"\t\t\t"<<wt[i]<<endl;
+        cout<<proc[i].pid<<"\t\t"
+            <<stime[i]<<"\t\t"
+            <<ctime[i]<<"\t\t"
+            <<ctime[i]-proc[i].at<<"\t\t\t"
+            <<wt[i]<<endl;
     }
 
 
@@ -119,8 +119,6 @@ int choice;
 cout << "Select a scheduling process.."<< endl;
 cin >> choice;
 
-if (choice == 1)
-{
     for(int i=0;i<totalprocess;i++)
     {
     proc[i].at=arrivaltime[i];
@@ -144,9 +142,6 @@ if (choice == 1)
 
 
     findgc();
-}
-
-
 
 
 
